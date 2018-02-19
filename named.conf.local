@@ -1,0 +1,17 @@
+include "/etc/bind/rndc.key";
+
+zone "cotillas.es" {
+    type master;
+    file "/var/cache/bind/db.cotillas.es"; # zone file path
+    allow-update { key rndc-key; };
+    notify no;
+    #allow-transfer { 210.34.3.254; }; # ns2 private IP address - secondary
+};
+
+zone "2.34.210.in-addr.arpa" {
+    type master;
+    file "/var/cache/bind/db.2.34.210";  # 10.128.0.0/16 subnet
+    allow-update { key rndc-key; };
+    notify no;
+    #allow-transfer { 210.34.3.254; };  # ns2 private IP address - secondary
+};
